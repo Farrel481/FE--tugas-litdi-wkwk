@@ -1,1 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Simulasi Literasi Digital</title>
 
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+}
+
+/* semua section disembunyiin dulu */
+.section {
+    display: none;
+    padding: 40px;
+}
+
+/* halaman 1 */
+#intro {
+    display: block;
+    background: black;
+    color: white;
+    text-align: center;
+    height: 100vh;
+}
+
+/* halaman 2 */
+#halaman2 {
+    background: white;
+    color: black;
+}
+
+/* halaman 3 */
+#login {
+    background: black;
+    color: lime;
+    font-family: monospace;
+    text-align: center;
+    min-height: 100vh;
+}
+
+/* tombol polos putih */
+.btn {
+    width: 120px;
+    height: 60px;
+    background: white;
+    border: 2px solid black;
+    cursor: pointer;
+    margin: 10px;
+}
+
+/* input */
+input {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* overlay gambar fullscreen */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+#overlay img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔹 HALAMAN 1 -->
+<div id="intro" class="section">
+    <h1 style="font-size: 60px;">LOGIN ABANGDA KITA KANGEN</h1>
+    <button class="btn" onclick="keHalaman2()"></button>
+</div>
+
+<!-- 🔹 HALAMAN 2 -->
+<div id="halaman2" class="section">
+    <h1 style="font-size: 70px;">WEBSITE PENIPUAN</h1>
+
+    <img src="Screenshot 2026-04-30 000638.png">
+
+    <br>
+
+    <!-- tombol ke login -->
+    <button class="btn" onclick="keLogin()"></button>
+
+    <!-- tombol buka popup 1 -->
+    <button class="btn" onclick="bukaOverlay1()"></button>
+
+    <!-- tombol buka popup 2 -->
+    <button class="btn" onclick="bukaOverlay2()"></button>
+</div>
+
+<!-- 🔹 HALAMAN 3 (LOGIN) -->
+<div id="login" class="section">
+    <h1>MASUKKAN PASWORD KORBAN!!</h1>
+
+    <input type="password" id="pw" placeholder="Password">
+
+    <br>
+
+    <button class="btn" onclick="lanjut()"></button>
+
+    <div id="teks"></div>
+
+    <div id="hasil" style="display:none;">
+        <h1>BERHASIL COYY</h1>
+        <h2>LET'S GO CAIR NIH KITA DAPET UANG HAHAHAH</h2>
+        <img src="Screenshot 2026-04-30 000638.png">
+    </div>
+</div>
+
+<!-- 🔥 POPUP OVERLAY 1 -->
+<div id="overlay1" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); text-align:center;">
+
+    <div style="position:relative; top:50%; transform:translateY(-50%);">
+        <span onclick="tutupOverlay1()" style="position:absolute; top:10px; right:20px; color:white; font-size:30px; cursor:pointer;">✖</span>
+        <img src="20260430_001115.jpg" style="max-width:90%; max-height:80%;">
+    </div>
+
+</div>
+
+<!-- 🔥 POPUP OVERLAY 2 -->
+<div id="overlay2" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); text-align:center;">
+
+    <div style="position:relative; top:50%; transform:translateY(-50%);">
+        <span onclick="tutupOverlay2()" style="position:absolute; top:10px; right:20px; color:white; font-size:30px; cursor:pointer;">✖</span>
+        <img src="20260430_004255.jpg" style="max-width:90%; max-height:80%;">
+    </div>
+
+</div>
+
+<script>
+function keHalaman2() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("halaman2").style.display = "block";
+}
+
+function keLogin() {
+    document.getElementById("halaman2").style.display = "none";
+    document.getElementById("login").style.display = "block";
+}
+
+function bukaOverlay1() {
+    document.getElementById("overlay1").style.display = "block";
+}
+
+function tutupOverlay1() {
+    document.getElementById("overlay1").style.display = "none";
+}
+
+function bukaOverlay2() {
+    document.getElementById("overlay2").style.display = "block";
+}
+
+function tutupOverlay2() {
+    document.getElementById("overlay2").style.display = "none";
+}
+
+function lanjut() {
+    let teks = document.getElementById("teks");
+    teks.style.display = "block";
+
+    teks.innerHTML = "Jangan pernah meniru hal ini ya!!";
+
+    setTimeout(() => {
+        if (document.getElementById("pw").value !== "") {
+            teks.innerHTML = "Data kamu bisa dicuri!";
+        } else {
+            teks.innerHTML = "✅ Kamu aman.";
+        }
+
+        setTimeout(() => {
+            document.getElementById("hasil").style.display = "block";
+        }, 2000);
+
+    }, 3000);
+}
+</script>
+</body>
+</html>
